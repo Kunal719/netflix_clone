@@ -18,15 +18,19 @@ const Banner = () => {
   }, []);
 
   //   console.log(movie);
-  //   const truncateOverview = (str, n) => {
-  //     return str.length > n ? str.substr(0, n - 1) + '...' : str;
-  //   };
+  const truncateOverview = (str, n) => {
+    return str?.length > n ? str.substring(0, n - 1) + '...' : str;
+  };
+  // let str = movie?.overview;
+  // if (str?.length > 150) {
+  //   str = str.substr(0, 150);
+  // }
   return (
     <header
       className='banner'
       style={{
         backgroundSize: 'cover',
-        backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie?.backdrop_path})`,
+        backgroundImage: `url("https://image.tmdb.org/t/p/original/${movie?.backdrop_path}")`,
         backgroundPosition: 'center center',
       }}
     >
@@ -40,7 +44,9 @@ const Banner = () => {
         <button className='banner_button'>Play</button>
         <button className='banner_button'>My List</button>
         {/* description  */}
-        <h1 className='banner_description'>{movie?.overview}</h1>
+        <h1 className='banner_description'>
+          {truncateOverview(movie?.overview, 150)}
+        </h1>
       </div>
       <div className='banner_fadeBottom'></div>
     </header>
